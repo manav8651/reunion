@@ -1,4 +1,3 @@
-// const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/Users');
@@ -21,7 +20,6 @@ const createSendToken = (user, statusCode, res) => {
     ),
     httpOnly: true
   };
-//   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
   res.cookie('jwt', token, cookieOptions);
 
@@ -70,7 +68,6 @@ exports.login = async (req, res, next) => {
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
-    // 1) Getting token and check of it's there
     let token;
     if (
       req.headers.authorization &&
@@ -97,7 +94,6 @@ exports.protect = catchAsync(async (req, res, next) => {
       );
     }
   
-    // GRANT ACCESS TO PROTECTED ROUTE
     req.user = currentUser;
     next();
 });

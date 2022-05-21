@@ -7,12 +7,6 @@ exports.getAllPostByUser = (req, res) => {
       res.status(200).json({
         status: "success",
         data: {
-          // id : doc[0]._id,
-          // title : doc[0].title,
-          // description : doc[0].body,
-          // createdAt : doc[0].updatedAt,
-          // comments : doc[0].comments,
-          // likes : doc[0].numLikes
           data: doc,
         },
       })
@@ -45,7 +39,6 @@ exports.getPost = (req, res) => {
     );
 };
 
-// API for creating a post.
 
 exports.createNewPost = (req, res, next) => {
   const post = new Post(req.body);
@@ -71,7 +64,6 @@ exports.createNewPost = (req, res, next) => {
     );
 };
 
-// API to DELETE Post
 
 exports.deletePost = (req, res) => {
   const deletePost = Post.findOneAndDelete({
@@ -96,7 +88,6 @@ exports.deletePost = (req, res) => {
     );
 };
 
-// Controller function for Liking the post..
 
 exports.likePost = (req, res) => {
   Post.findByIdAndUpdate(
@@ -121,7 +112,6 @@ exports.likePost = (req, res) => {
     );
 };
 
-// Controller function for unliking the post..
 
 exports.unlikePost = (req, res) => {
   Post.findByIdAndUpdate(

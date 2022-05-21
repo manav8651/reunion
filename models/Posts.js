@@ -42,4 +42,4 @@ module.exports = mongoose.model('Post', postSchema, 'posts');
 
 
 
-// 1. Update in heroku 
+ 
