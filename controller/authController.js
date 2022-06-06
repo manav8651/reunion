@@ -39,6 +39,8 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async (req, res, next) => {
+  const generatedOTP = OTP;
+
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -77,7 +79,6 @@ exports.login = async (req, res, next) => {
   createSendToken(user, 200, res);
 };
 
-
 exports.verifyEmail = async (req, res, next) => {
   const { email, otp } = req.body;
   const user = await User.findOne({ email }).select("+otp");
@@ -97,7 +98,6 @@ exports.verifyEmail = async (req, res, next) => {
 
   createSendToken(user, 201, res);
 };
-
 
 exports.forgotPassword = async (req, res, next) => {
   // 1: Get user based on POSTed email
